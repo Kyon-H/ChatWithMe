@@ -18,8 +18,8 @@ public class User {
 	private int userIsOnline;
 	private int userRole;
 	
-	@Id   //��ʾ����
-	@GenericGenerator(name = "generator", strategy = "assigned")    //����
+	@Id   
+	@GenericGenerator(name = "generator", strategy = "assigned")    
 	@GeneratedValue(generator = "generator")
 	
 	@Column(name="user_id")
@@ -60,7 +60,7 @@ public class User {
 	public void setUserRole(int userRole) {
 		this.userRole = userRole;
 	}
-	//���췽��
+	
 	public User(){};
 	public User(UserDetail userDetail){
 		this.userId = userDetail.getUserDetailId();
