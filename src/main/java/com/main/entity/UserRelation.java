@@ -11,9 +11,6 @@ import javax.persistence.Table;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-/*
- * http://blog.csdn.net/robinpipi/article/details/7655388
- */
 
 @Entity
 @Table(name="user_relation")
