@@ -11,13 +11,7 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-/*
- * ������ΰѵ�ǰ��¼�û�����Ϣ����Session�У�@SessionAttributesע���ʹ�÷��������л��ƿ��Բο����沩��
- * http://www.cnblogs.com/waytofall/p/3460533.html
- * �˴�ѡ�����Servlet��HttpSession
- * 
- * 2017/01/14
- */
+
 
 
 
