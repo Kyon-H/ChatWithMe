@@ -27,8 +27,8 @@ public class UserDetail{
 	private String userPhoneNumber;
 	private Timestamp userRegisterTime;
 	
-	@Id   //��ʾ����
-	@GenericGenerator(name = "generator", strategy = "increment")    //����
+	@Id   
+	@GenericGenerator(name = "generator", strategy = "increment")    
 	@GeneratedValue(generator = "generator")
 	
 	@Column(name="user_detail_id")
