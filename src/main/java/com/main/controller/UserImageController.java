@@ -22,54 +22,56 @@ import com.main.service.UserImageService;
 
 @Controller
 public class UserImageController {
-	
-	public static final Logger logger = LoggerFactory.getLogger(UpImgController.class);
-	@Autowired private UpImgService upImgService;
-	@Autowired private UserImageService userImageService;
-	
-	/**
-	 * 图片上传
-	 * @param userId 用户id
-	 * @param file 图片文件
-	 * @return empty|imgbt|error|success
-	 */
-	@RequestMapping(value = "/userImgUpload", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> userImgUpload(int userId,@RequestParam( value="file",required=false)MultipartFile file ){
-		String result="Fail";
-		Map<String, Object> value = new HashMap<String, Object>();
-		if (file == null || file.getSize() <= 0) {
-		      result="empty";
-		      value.put("result", result);
-		      return value;
-		}
-		String url=upImgService.updateHead(userId,file);
-		if(url.equals("imgbt")||url.equals("error"))
-			result=url;
-		else {
-			System.out.println("UpImgController.userImgUpload()url "+url);
-			UserImage userImage=userImageService.getUserImage(userId);
-			userImage.setUserImg(url);
-			userImageService.updateUserImage(userId,url);
-			result="success";
-		}
-		value.put("result", result);
-		return value;
-	}
-	
-	@PostMapping("/doFindUserImgById")
-	@ResponseBody
-	public Map<String, Object> FindUserImgById(int userId){
-		//System.out.println("UserImgController.GetUserImgById()");
-		UserImage userImg=userImageService.getUserImage(userId);
-		Map<String, Object>result=new HashMap<String,Object>();
-		if(userImg!=null) {
-			result.put("userId", userImg.getUserId());
-			result.put("userImg", userImg.getUserImg());
-		}
-		else {
-			result=null;
-		}
-		return result;
-	}
+
+    public static final Logger logger = LoggerFactory.getLogger(UpImgController.class);
+    @Autowired
+    private UpImgService upImgService;
+    @Autowired
+    private UserImageService userImageService;
+
+    /**
+     * 图片上传
+     *
+     * @param userId 用户id
+     * @param file   图片文件
+     * @return empty|imgbt|error|success
+     */
+    @RequestMapping(value = "/userImgUpload", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> userImgUpload(int userId, @RequestParam(value = "file", required = false) MultipartFile file) {
+        String result = "Fail";
+        Map<String, Object> value = new HashMap<String, Object>();
+        if (file == null || file.getSize() <= 0) {
+            result = "empty";
+            value.put("result", result);
+            return value;
+        }
+        String url = upImgService.updateHead(userId, file);
+        if (url.equals("imgbt") || url.equals("error"))
+            result = url;
+        else {
+            System.out.println("UpImgController.userImgUpload()url " + url);
+            UserImage userImage = userImageService.getUserImage(userId);
+            userImage.setUserImg(url);
+            userImageService.updateUserImage(userId, url);
+            result = "success";
+        }
+        value.put("result", result);
+        return value;
+    }
+
+    @PostMapping("/doFindUserImgById")
+    @ResponseBody
+    public Map<String, Object> FindUserImgById(int userId) {
+        //System.out.println("UserImgController.GetUserImgById()");
+        UserImage userImg = userImageService.getUserImage(userId);
+        Map<String, Object> result = new HashMap<String, Object>();
+        if (userImg != null) {
+            result.put("userId", userImg.getUserId());
+            result.put("userImg", userImg.getUserImg());
+        } else {
+            result = null;
+        }
+        return result;
+    }
 }

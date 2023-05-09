@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-
-
-
-
-
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.entity.User;
@@ -28,56 +23,56 @@ import com.main.service.UserService;
 
 @Controller
 public class LoginController {
-	
-	@Resource private UserService userService;
-	@Resource private UserDetailService userDetailService;
-	
-	@RequestMapping(value="/main")
-	public String main(){
-		return "main";
-	}
-	
-	@RequestMapping(value="/login")
-	public String login(){
-		return "login";
-	}
-	
-	@RequestMapping(value = "/logout")
-	public String logout() {
-		return "logout";
-	}
-	
-	@RequestMapping(value="/doLogin",method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String,Object> doLogin(String userName,String userPassword,HttpSession httpSession){
-		System.out.println("LoginController.doLogin()");
-		String result="fail";
-		User user = userService.getUser(userName);
-		UserDetail userDetail = userDetailService.getUserDetail(userName);
-		if(user!=null){
-			if(Objects.equals(userDetail.getUserDetailPassword(), userPassword)){
-				httpSession.setAttribute("currentUser",user);
-				result = "success";
-			}
-			else{
-				result = "wrong";
-			}
-		}
-		else{
-			result = "unexist";
-		}
-		Map<String, Object> results = new HashMap<String,Object>();
-		results.put("result", result);
-		if(result.equals("success"))
-			results.put("user", JSON.toJSON(user));
-		return results;
-	}
-	
-	
-	@RequestMapping(value="/doLogout")
-	public String doLogout(HttpSession httpSession){
-		System.out.println("LoginController.doLogout()");
-		httpSession.removeAttribute("currentUser");
-		return "redirect:login";
-	}
+
+    @Resource
+    private UserService userService;
+    @Resource
+    private UserDetailService userDetailService;
+
+    @RequestMapping(value = "/main")
+    public String main() {
+        return "main";
+    }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout() {
+        return "logout";
+    }
+
+    @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> doLogin(String userName, String userPassword, HttpSession httpSession) {
+        System.out.println("LoginController.doLogin()");
+        String result = "fail";
+        User user = userService.getUser(userName);
+        UserDetail userDetail = userDetailService.getUserDetail(userName);
+        if (user != null) {
+            if (Objects.equals(userDetail.getUserDetailPassword(), userPassword)) {
+                httpSession.setAttribute("currentUser", user);
+                result = "success";
+            } else {
+                result = "wrong";
+            }
+        } else {
+            result = "unexist";
+        }
+        Map<String, Object> results = new HashMap<String, Object>();
+        results.put("result", result);
+        if (result.equals("success"))
+            results.put("user", JSON.toJSON(user));
+        return results;
+    }
+
+
+    @RequestMapping(value = "/doLogout")
+    public String doLogout(HttpSession httpSession) {
+        System.out.println("LoginController.doLogout()");
+        httpSession.removeAttribute("currentUser");
+        return "redirect:login";
+    }
 }

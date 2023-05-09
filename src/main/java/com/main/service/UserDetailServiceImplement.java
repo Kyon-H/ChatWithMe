@@ -7,39 +7,41 @@ import org.springframework.stereotype.Service;
 
 import com.main.dao.UserDetailDao;
 import com.main.entity.UserDetail;
+
 @Service
 public class UserDetailServiceImplement implements UserDetailService {
 
-	@Autowired private UserDetailDao userDetailDao;
-	
-	@Override
-	public UserDetail getUserDetail(int id) {
-		return userDetailDao.getUserDetail(id);
-	}
-	
-	@Override
-	public UserDetail getUserDetail(String name) {
-		return userDetailDao.getUserDetail(name);
-	}
+    @Autowired
+    private UserDetailDao userDetailDao;
 
-	@Override
-	public void addUserDetail(UserDetail userDetail) {
-		userDetailDao.addUserDetail(userDetail);
-	}
+    @Override
+    public UserDetail getUserDetail(int id) {
+        return userDetailDao.getUserDetail(id);
+    }
 
-	@Override
-	public boolean deleteUserDetail(int id) {
-		return userDetailDao.deleteUserDetail(id);
-	}
+    @Override
+    public UserDetail getUserDetail(String name) {
+        return userDetailDao.getUserDetail(name);
+    }
 
-	@Override
-	public boolean updateUserDetail(UserDetail userDetail) {
-		return userDetailDao.updateUserDetail(userDetail);
-	}
+    @Override
+    public void addUserDetail(UserDetail userDetail) {
+        userDetailDao.addUserDetail(userDetail);
+    }
 
-	@Override
-	public List<UserDetail> getAllUserDetail() {
-		return userDetailDao.getAllUserDetail();
-	}
+    @Override
+    public boolean deleteUserDetail(int id) {
+        return userDetailDao.deleteUserDetail(id);
+    }
+
+    @Override
+    public boolean updateUserDetail(UserDetail userDetail) {
+        return userDetailDao.updateUserDetail(userDetail);
+    }
+
+    @Override
+    public List<UserDetail> getAllUserDetail() {
+        return userDetailDao.getAllUserDetail();
+    }
 
 }

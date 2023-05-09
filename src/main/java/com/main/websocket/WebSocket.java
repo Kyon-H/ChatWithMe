@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 public class WebSocket implements Servlet {
     int port = 20818;
     Server server = null;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         try {
