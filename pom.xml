@@ -6,8 +6,7 @@
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   
-  <name>ChatWithMe Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <name>ChatWithMe</name>
   <dependencies>
   	<!--单元测试工具-->
     <dependency>
